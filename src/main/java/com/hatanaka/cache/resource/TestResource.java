@@ -1,16 +1,39 @@
 package com.hatanaka.cache.resource;
 
-import org.springframework.cache.annotation.Cacheable;
+import com.hatanaka.cache.service.StatementService;
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
+@RequiredArgsConstructor
+@Slf4j
 public class TestResource {
 
+    private final StatementService statementService;
+
     @GetMapping("/")
-    @Cacheable(cacheNames = "teste")
-    public String test() throws InterruptedException {
-        Thread.sleep(5000);
-        return "Ola Mundo";
+    public String list() {
+        log.info("m=list");
+        return statementService.listAll();
+    }
+
+    @GetMapping("/insert/")
+    public String insert() {
+        log.info("m=insert");
+        return statementService.save("12345678");
+    }
+
+    @GetMapping("/cache/")
+    public String listFromCache() {
+        log.info("m=listFromCache");
+        return statementService.listFromCache("12345678");
+    }
+
+    @GetMapping("/clear/")
+    public void clearCache() {
+        log.info("m=clearCache");
+        statementService.clearCache("12345678");
     }
 }
