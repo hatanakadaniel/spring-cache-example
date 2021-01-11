@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.servlet.ModelAndView;
 
 @RestController
 @RequiredArgsConstructor
@@ -36,4 +37,12 @@ public class TestResource {
         log.info("m=clearCache");
         statementService.clearCache("12345678");
     }
+
+    @GetMapping("/product2/")
+    public ModelAndView product(ModelAndView modelAndView) {
+        log.info("m=product2");
+        modelAndView.setViewName("product");
+        return modelAndView;
+    }
+
 }
