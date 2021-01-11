@@ -1,0 +1,6 @@
+spring:
+  cache:
+    type: simple
+    cache-names: teste
+
+
