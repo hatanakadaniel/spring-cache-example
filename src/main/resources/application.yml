@@ -1,8 +1,12 @@
 spring:
   cache:
     type: redis
-    cache-names: teste
+  #    redis:
+  #      time-to-live: 5000
+  redis:
+    host: elasticache.aws.com
 logging:
   level:
     org.springframework.cache: TRACE
-
+server:
+  port: 8080
