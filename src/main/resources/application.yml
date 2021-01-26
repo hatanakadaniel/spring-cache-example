@@ -1,0 +1,12 @@
+spring:
+  cache:
+    type: redis
+  #    redis:
+  #      time-to-live: 5000
+  redis:
+    host: elasticache.aws.com
+logging:
+  level:
+    org.springframework.cache: TRACE
+server:
+  port: 8080
